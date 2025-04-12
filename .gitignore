@@ -1,0 +1,23 @@
+# Entorno virtual
+venv/
+
+# Archivos de Python compilados
+__pycache__/
+*.py[cod]
+*.so
+
+# Archivos temporales
+*.log
+*.tmp
+
+# Checkpoints de Jupyter
+*.ipynb_checkpoints/
+
+# Archivos de entrenamiento del modelo (pesados)
+modelo_final/
+*.pt
+*.bin
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db

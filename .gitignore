@@ -3,20 +3,22 @@ venv/
 
 # Archivos de Python compilados
 __pycache__/
-*.py[cod]
-*.so
+.py[cod]
+.so
 
 # Archivos temporales
-*.log
-*.tmp
+.log
+.tmp
 
 # Checkpoints de Jupyter
-*.ipynb_checkpoints/
+.ipynb_checkpoints/
 
 # Archivos de entrenamiento del modelo (pesados)
+modelo_descripciones_t5/
 modelo_final/
-*.pt
-*.bin
+.safetensors
+.pt
+.bin
 
 # Archivos de sistema
 .DS_Store

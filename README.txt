@@ -13,40 +13,27 @@ Entrenar un modelo que dados los atributos de un producto (como color, forma, ma
 
 ## 🧪 Ejemplo de entrada
 
-```
 describir: producto: cámara; color: negra; tamaño: mediano; forma: rectangular; material: plástico; estado: nuevo
-```
 
 ## 📝 Ejemplo de salida generada
-
-```
 Una cámara negra de tamaño mediano, forma rectangular, fabricada en plástico y en estado nuevo.
-```
-```
 
 ## ⚙️ Requisitos
 
 Instalar las dependencias:
-```bash
 pip install transformers datasets torch pandas tqdm sentencepiece
-```
 
 ## 🚀 Uso
 
 ### 1. Entrenar el modelo:
-```bash
 python entrenamiento_t5.py
-```
+
 
 ### 2. Generar descripciones para un ejemplo:
-```bash
 python generar_descripciones.py
-```
 
 ### 3. Generar descripciones en lote desde un CSV:
-```bash
 python generar_descripciones_csv.py
-```
 
 ## 🧠 Créditos
 Proyecto creado como demostración de fine-tuning de LLMs con T5 para tareas de NLP aplicadas a productos.

@@ -14,7 +14,8 @@ __pycache__/
 .ipynb_checkpoints/
 
 # Archivos de entrenamiento del modelo (pesados)
-modelo_estilo_comercial
+modelo_t5_base
+logs_t5_base
 .safetensors
 .pt
 .bin

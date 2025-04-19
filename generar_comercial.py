@@ -1,7 +1,7 @@
 import torch
 from transformers import T5Tokenizer, T5ForConditionalGeneration
 
-modelo_path = "./modelo_estilo_comercial"
+modelo_path = "./modelo_t5_base"
 tokenizer = T5Tokenizer.from_pretrained(modelo_path)
 model = T5ForConditionalGeneration.from_pretrained(modelo_path)
 

@@ -8,15 +8,17 @@ from transformers import (
 )
 from datasets import Dataset
 import shutil
+import unidecode
 
-shutil.rmtree("./modelo_t5_base", ignore_errors=True)
-shutil.rmtree("./logs_t5_base", ignore_errors=True)
-
-csv_path = "entrenamiento_estilo_comercial.csv"
+csv_path = "dataset_ventas_2000.csv"
 df = pd.read_csv(csv_path)
 
-tokenizer = T5Tokenizer.from_pretrained("t5-base")
-model = T5ForConditionalGeneration.from_pretrained("t5-base")
+for col in ["input_text", "target_text"]:
+    df[col] = df[col].astype(str).apply(unidecode.unidecode)
+
+modelo_base = "./modelo_t5_base"
+tokenizer = T5Tokenizer.from_pretrained(modelo_base)
+model = T5ForConditionalGeneration.from_pretrained(modelo_base)
 dataset = Dataset.from_pandas(df)
 
 def tokenize(example):
@@ -32,7 +34,8 @@ tokenized_dataset = dataset.map(tokenize, batched=True)
 
 training_args = Seq2SeqTrainingArguments(
     output_dir="./modelo_t5_base",
-    per_device_train_batch_size=4,
+    per_device_train_batch_size=1,        
+    gradient_accumulation_steps=2,             
     num_train_epochs=30,
     learning_rate=3e-4,
     logging_dir="./logs_t5_base",

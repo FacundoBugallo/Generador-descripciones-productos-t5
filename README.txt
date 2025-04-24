@@ -1,39 +1,105 @@
-Este proyecto entrena un modelo `T5-small` usando la librería `transformers` de Hugging Face para generar descripciones naturales de productos a partir de sus atributos estructurados como texto.
+# Generador de Descripciones Comerciales con T5
 
-## 📦 Objetivo
-Entrenar un modelo que dados los atributos de un producto (como color, forma, material, estado, etc.), genere una descripción textual coherente y detallada.
+Este proyecto utiliza un modelo basado en T5 para generar descripciones comerciales de productos a partir de sus características. Está diseñado para simular un vendedor profesional que crea textos atractivos y persuasivos.
 
-## 🔁 Flujo del Proyecto
+---
 
-1. Cargar un dataset con productos y atributos (CSV)
-2. Preparar las entradas (input_text) y salidas (target_text)
-3. Entrenar un modelo T5 con `Trainer`
-4. Guardar el modelo fine-tuned
-5. Usar el modelo para generar descripciones a partir de nuevos productos
+## 🚀 Características principales
+- Entrenamiento supervisado con un dataset de 2000 ejemplos.
+- Generación automática de descripciones desde línea de comandos.
+- Tokenización y preprocesamiento personalizados.
+- División del dataset en entrenamiento y validación.
+- Uso de `EarlyStopping` y estrategia de evaluación por épocas.
 
-## 🧪 Ejemplo de entrada
+---
 
-describir: producto: cámara; color: negra; tamaño: mediano; forma: rectangular; material: plástico; estado: nuevo
+## 🧠 Arquitectura del modelo
+- **Modelo base:** T5 ("t5-base" o un modelo entrenado personalizado).
+- **Entrenamiento:** PyTorch + Hugging Face Transformers.
+- **Entradas:** texto tipo prompt con atributos del producto.
+- **Salida esperada:** descripción comercial del producto.
 
-## 📝 Ejemplo de salida generada
-Una cámara negra de tamaño mediano, forma rectangular, fabricada en plástico y en estado nuevo.
+---
 
-## ⚙️ Requisitos
+## 🛠️ Cómo entrenar el modelo
+1. Coloca tu dataset en `dataset_ventas_2000.csv` con columnas:
+   - `input_text`: descripción estructurada del producto.
+   - `target_text`: descripción estilo comercial.
 
-Instalar las dependencias:
-pip install transformers datasets torch pandas tqdm sentencepiece
+2. Corre el script de entrenamiento:
+```bash
+python entrenamiento_t5_base.py
+```
 
-## 🚀 Uso
+3. El modelo se guarda en:
+```
+./modelo_t5_base/
+```
 
-### 1. Entrenar el modelo:
-python entrenamiento_t5.py
+---
 
+## 🧪 Cómo generar descripciones
+Ejecuta el script `generar_comercial.py` para probar el modelo con ejemplos nuevos.
 
-### 2. Generar descripciones para un ejemplo:
-python generar_descripciones.py
+```bash
+python generar_comercial.py
+```
 
-### 3. Generar descripciones en lote desde un CSV:
-python generar_descripciones_csv.py
+Este script usa el modelo guardado y genera 10 descripciones automáticas.
 
-## 🧠 Créditos
-Proyecto creado como demostración de fine-tuning de LLMs con T5 para tareas de NLP aplicadas a productos.
+---
+
+## 📊 Visualización
+Puedes usar TensorBoard para monitorear el entrenamiento:
+```bash
+tensorboard --logdir=./logs_t5_base
+```
+
+---
+
+## 📂 Estructura del proyecto
+```
+├── dataset_ventas_2000.csv         # Dataset de entrenamiento
+├── modelo_t5_base/                 # Modelo entrenado
+├── logs_t5_base/                   # Logs de entrenamiento para TensorBoard
+├── entrenamiento_t5_base.py       # Script de entrenamiento
+├── generar_comercial.py           # Script para generar descripciones
+├── README.md                       # Este archivo
+```
+
+---
+
+## 🧾 Requisitos
+```bash
+pip install transformers datasets torch pandas unidecode tensorboard
+```
+
+---
+
+## 📌 Notas
+- Asegúrate de no sobreentrenar: usa `early_stopping`.
+- Prompts más detallados ayudan a mejores resultados.
+- Revisa diversidad en tu dataset para evitar repeticiones.
+
+---
+
+## 🧠 Ejemplo de prompt:
+```text
+Producto: Celular
+Color: Negro
+Tamaño: 8 pulgadas
+Forma: Rectangular
+Material: Metálico
+Estado: Nuevo
+```
+
+Genera algo como:
+```text
+Un moderno celular negro de 8 pulgadas con diseño rectangular metálico. Ideal para quienes buscan potencia y estilo en un solo dispositivo.
+```
+
+---
+
+**Autor:** Facundo Bugallo
+
+---
